@@ -5,7 +5,7 @@
 
     <color name="heart">#217074</color>
     <color name="bottom">#FF5722</color>
-
+    <color name="marca">#8E8E8E</color>
     <color name="menu_bottom_navigation">#FFFFFFFF</color>
     <color name="checked_false_icon">#8E8E8E</color>
     <color name="favoritos">#CDCBCB</color>
