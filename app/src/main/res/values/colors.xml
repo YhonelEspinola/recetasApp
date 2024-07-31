@@ -10,4 +10,8 @@
     <color name="checked_false_icon">#8E8E8E</color>
     <color name="favoritos">#CDCBCB</color>
     <color name="grisclaro">#F1F1F1</color>
+    <color name="icon_color">#FF000000</color>
+    <color name="linea">#54DCDCDC</color>
+    <color name="gris">#edeef1</color>
+    <color name="red">#E80C1E</color>
 </resources>
