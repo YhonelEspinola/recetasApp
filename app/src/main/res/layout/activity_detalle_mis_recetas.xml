@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Preparacion"
+            android:text="Detalle de mis recetas"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -56,37 +56,35 @@
             android:layout_marginTop="10dp"/>
 
     </LinearLayout>
-        <LinearLayout
-            android:id="@+id/text_marcador"
+    <LinearLayout
+        android:id="@+id/text_marcador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/textCat"
+        android:layout_marginTop="55dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Categoria: "
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/textCategoria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/textCat"
-            android:layout_marginTop="55dp"
-            >
+            android:text="Categoria"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            />
 
-            <TextView
-                android:id="@+id/textCategoria"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Categoria"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"/>
-            <ImageView
-                android:id="@+id/edtFavorito"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:background="@drawable/circulo"
-                android:src="@drawable/favoritos"
-                android:layout_marginEnd="10dp"
-                />
-
-
-        </LinearLayout>
+    </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -168,6 +166,18 @@
                     android:gravity="top|start"
                     android:background="@drawable/ingredientes" />
             </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:id="@+id/btnBotonPreparar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Editar"
+                android:layout_gravity="center"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/heart"
+                android:layout_marginTop="10dp"
+                />
+
         </LinearLayout>
     </ScrollView>
 
