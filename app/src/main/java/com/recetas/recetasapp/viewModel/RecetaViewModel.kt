@@ -1,0 +1,140 @@
+package com.recetas.recetasapp.viewModel
+
+import android.net.Uri
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.google.android.gms.tasks.Tasks
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import com.google.firebase.storage.storage
+import com.recetas.recetasapp.model.Receta
+import java.util.UUID
+
+class RecetaViewModel : ViewModel() {
+
+    private val store = Firebase.storage
+    private val db = FirebaseFirestore.getInstance()
+    val recetaCreada = MutableLiveData<Boolean>()
+    val listaReceta = MutableLiveData<List<Receta>>()
+    val errorMessage = MutableLiveData<String>()
+
+
+
+    fun crearReceta(
+        nombre: String,
+        categoria: String,
+        descripcion: String,
+        ingredientes: String,
+        preparacion: String,
+        imagenReceta: Uri?
+    ) {
+        if (imagenReceta == null) {
+            errorMessage.value = "La imagen de la receta está vacía"
+            return
+        }
+
+        val imageFileName = UUID.randomUUID().toString()
+        val refReceta = store.reference.child(imageFileName)
+        val uploadTaskReceta = refReceta.putFile(imagenReceta)
+
+        uploadTaskReceta.continueWithTask { refReceta.downloadUrl }
+            .addOnSuccessListener { uri ->
+                val imageUrl = uri.toString()
+
+                val data = hashMapOf(
+                    "nombre" to nombre,
+                    "categoria" to categoria,
+                    "descripcion" to descripcion,
+                    "ingredientes" to ingredientes,
+                    "preparacion" to preparacion,
+                    "imagenReceta" to imageUrl
+                )
+                db.collection("recetas")
+                    .add(data)
+                    .addOnSuccessListener {
+                        recetaCreada.value = true
+                    }
+                    .addOnFailureListener { e ->
+                        errorMessage.value = "Error al guardar la receta: ${e.message}"
+                    }
+            }
+            .addOnFailureListener {
+                errorMessage.value = "Error al subir la imagen: ${it.message}"
+            }
+    }
+
+
+
+    fun validar(nombre: String,
+                categoria:String,
+                descripcion: String,
+                ingredientes: String,
+                preparacion: String,
+                imagenReceta: Uri?) : String? {
+
+        return when {
+            imagenReceta == null -> "La imagen de la receta está vacía"
+            nombre.isEmpty() -> "El nombre de la receta está vacío"
+            categoria.isEmpty() -> "Elige una categoria"
+            descripcion.isEmpty() -> "Ingrese una descripcion"
+            ingredientes.isEmpty() -> "Ingrese los ingredientes"
+            preparacion.isEmpty() -> "Ingrese la preparación"
+            else -> null
+        }
+    }
+
+    fun listarEvento(){
+        db.collection("recetas")
+           .orderBy("nombre", com.google.firebase.firestore.Query.Direction.ASCENDING)
+           .get()
+           .addOnSuccessListener { querySnapshots ->
+               var newList = arrayListOf<Receta>()
+               for (document in querySnapshots){
+                   val data = document.data
+                   val nombre = data["nombre"] as? String?: ""
+                   val categoria = data["categoria"] as? String?: ""
+                   val descripcion = data["descripcion"] as? String?: ""
+                   val ingredientes = data["ingredientes"] as? String?: ""
+                   val preparacion = data["preparacion"] as? String?: ""
+                   val imagenReceta = data["imagenReceta"] as? String?: ""
+                   val codigo = document.id
+
+                   val modelo = Receta(nombre, categoria, descripcion, ingredientes, preparacion, imagenReceta, codigo)
+                    newList.add(modelo)
+               }
+               listaReceta.value = newList
+            }
+           .addOnFailureListener { exception ->
+                errorMessage.value = "Error al cargar la lista de recetas: ${exception.message}"
+            }
+    }
+
+    fun listarRecetasPorFiltros(categoria: String){
+
+        var query:Query = db.collection("recetas")
+        if (!categoria.isNullOrEmpty()){
+            query = query.whereEqualTo("categoria", categoria)
+        }
+
+        query.orderBy("nombre", com.google.firebase.firestore.Query.Direction.ASCENDING)
+        query.get()
+        .addOnSuccessListener { querySnapshots ->
+            var newList = arrayListOf<Receta>()
+            for (document in querySnapshots){
+                val data = document.data
+                val nombre = data["nombre"] as? String?: ""
+                val categoria = data["categoria"] as? String?: ""
+                val descripcion = data["descripcion"] as? String?: ""
+                val ingredientes = data["ingredientes"] as? String?: ""
+                val preparacion = data["preparacion"] as? String?: ""
+                val imagenReceta = data["imagenReceta"] as? String?: ""
+                val codigo = document.id
+
+                val modelo = Receta(nombre, categoria, descripcion, ingredientes, preparacion, imagenReceta, codigo)
+                newList.add(modelo)
+            }
+            listaReceta.value = newList
+        }
+    }
+}
