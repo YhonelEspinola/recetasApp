@@ -84,7 +84,7 @@ class RecetaViewModel : ViewModel() {
         }
     }
 
-    fun listarEvento(){
+    fun listarReceta(){
         db.collection("recetas")
            .orderBy("nombre", com.google.firebase.firestore.Query.Direction.ASCENDING)
            .get()

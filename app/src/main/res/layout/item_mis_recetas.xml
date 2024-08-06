@@ -91,7 +91,7 @@
 
                 </LinearLayout>
                 <Button
-                    android:id="@+id/btnBotonPreparar"
+                    android:id="@+id/btnVerMas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ver mas"
