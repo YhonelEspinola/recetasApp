@@ -4,6 +4,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="25dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/logo" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,12 +21,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp">
 
             <TextView
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:text="Registro Admin"
+                android:text="Registrar Usuario"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/heart"
@@ -33,44 +40,6 @@
                 android:background="@color/heart"/>
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="Nombre"
-            android:textSize="15sp"
-            android:textStyle="bold"/>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textNombre"
-                android:inputType="textPersonName|textCapWords"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-        <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="Apellido"
-            android:textSize="15sp"
-            android:textStyle="bold"/>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textApellido"
-                android:inputType="textPersonName|textCapWords"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
         <TextView
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -160,7 +129,8 @@
             android:text="Registrarme"
             android:layout_marginBottom="15dp"
             android:backgroundTint="@color/heart"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"/>
 
     </LinearLayout>
 

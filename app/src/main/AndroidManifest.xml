@@ -13,14 +13,17 @@
         android:theme="@style/Theme.Recetasapp"
         tools:targetApi="31">
         <activity
-            android:name=".view.activity.CrearRecetasActivity"
+            android:name=".view.activity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+
             </intent-filter>
         </activity>
+        <activity android:name=".view.activity.RegistrarUsuarioActivity"/>
+        <activity android:name=".view.activity.MenuActivity"></activity>
     </application>
 
 </manifest>
