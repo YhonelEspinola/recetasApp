@@ -13,7 +13,7 @@ import com.recetas.recetasapp.view.activity.DetalleRecetaActivity
 import com.squareup.picasso.Picasso
 
 class ListaRecetaViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup):
-RecyclerView.ViewHolder(inflater.inflate(R.layout.item_receta, viewGroup)){
+RecyclerView.ViewHolder(inflater.inflate(R.layout.item_receta, viewGroup, false)){
 
     private var imagen : ImageView? = null
     private var categoria : TextView? = null
@@ -47,6 +47,7 @@ RecyclerView.ViewHolder(inflater.inflate(R.layout.item_receta, viewGroup)){
               putExtra("imagenReceta", receta.imagenReceta)
               putExtra("ingredientes", receta.ingredientes)
               putExtra("preparacion", receta.preparacion)
+              putExtra("fecha", receta.fecha)
           }
             itemView.context.startActivity(intent)
         }

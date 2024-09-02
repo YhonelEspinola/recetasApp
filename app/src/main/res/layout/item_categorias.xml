@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="10dp"
+    >
 
-    <TextView
-        android:id="@+id/textCategoria"
+    <Button
+        android:id="@+id/btnCategoria"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:text="Categorias"
-        android:background="@drawable/design_filter_sede_background_default"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:textColor="@color/black"/>
-
+        android:layout_height="40dp"
+        android:backgroundTint="@color/color_boton_categ"
+        android:text="Categoria 1"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        />
 
 </LinearLayout>

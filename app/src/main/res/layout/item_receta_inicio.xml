@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/btnImagen"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="160dp"
             android:src="@drawable/logo"/>
         <TextView
             android:id="@+id/textCategoria"
@@ -22,19 +22,21 @@
             android:layout_height="wrap_content"
             android:text="Categoria"
             android:gravity="center"
+            android:textSize="18dp"
             />
         <TextView
             android:id="@+id/textTitulo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Titulo"
             android:textStyle="bold"
-            android:textSize="15sp"/>
+            android:textSize="18sp"/>
         <TextView
             android:id="@+id/textDescripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="descripcion breve"
+            android:textSize="18sp"
             android:textAlignment="center"/>
 
         <Button
@@ -43,7 +45,7 @@
             android:layout_height="wrap_content"
             android:text="Ver preparacion"
             android:layout_gravity="center"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:backgroundTint="@color/heart"
             android:layout_marginTop="10dp"

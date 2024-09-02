@@ -152,6 +152,7 @@
                 app:tint="@color/icon_color"/>
 
             <TextView
+                android:id="@+id/crearRecetas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Crear recetas"

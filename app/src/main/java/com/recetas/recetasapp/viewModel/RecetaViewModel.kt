@@ -1,10 +1,13 @@
 package com.recetas.recetasapp.viewModel
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Firebase
+import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.storage.storage
@@ -18,6 +21,8 @@ class RecetaViewModel : ViewModel() {
     val recetaCreada = MutableLiveData<Boolean>()
     val listaReceta = MutableLiveData<List<Receta>>()
     val errorMessage = MutableLiveData<String>()
+    private val TAG = "RecetaViewModel"
+
 
 
 
@@ -27,8 +32,16 @@ class RecetaViewModel : ViewModel() {
         descripcion: String,
         ingredientes: String,
         preparacion: String,
-        imagenReceta: Uri?
+        imagenReceta: Uri?,
+
     ) {
+        val user = FirebaseAuth.getInstance().currentUser
+
+        if (user == null) {
+            errorMessage.value = "No hay usuario autenticado"
+            return
+        }
+
         if (imagenReceta == null) {
             errorMessage.value = "La imagen de la receta está vacía"
             return
@@ -48,7 +61,9 @@ class RecetaViewModel : ViewModel() {
                     "descripcion" to descripcion,
                     "ingredientes" to ingredientes,
                     "preparacion" to preparacion,
-                    "imagenReceta" to imageUrl
+                    "imagenReceta" to imageUrl,
+                    "fecha" to Timestamp.now(),
+                    "uid" to user.uid
                 )
                 db.collection("recetas")
                     .add(data)
@@ -80,33 +95,41 @@ class RecetaViewModel : ViewModel() {
             descripcion.isEmpty() -> "Ingrese una descripcion"
             ingredientes.isEmpty() -> "Ingrese los ingredientes"
             preparacion.isEmpty() -> "Ingrese la preparación"
+
             else -> null
         }
     }
 
-    fun listarReceta(){
-        db.collection("recetas")
-           .orderBy("nombre", com.google.firebase.firestore.Query.Direction.ASCENDING)
-           .get()
-           .addOnSuccessListener { querySnapshots ->
-               var newList = arrayListOf<Receta>()
-               for (document in querySnapshots){
-                   val data = document.data
-                   val nombre = data["nombre"] as? String?: ""
-                   val categoria = data["categoria"] as? String?: ""
-                   val descripcion = data["descripcion"] as? String?: ""
-                   val ingredientes = data["ingredientes"] as? String?: ""
-                   val preparacion = data["preparacion"] as? String?: ""
-                   val imagenReceta = data["imagenReceta"] as? String?: ""
-                   val codigo = document.id
+    fun listarRecetasDelUsuario(userId: String) {
+        Log.d(TAG, "Buscando recetas para el UID: $userId")
 
-                   val modelo = Receta(nombre, categoria, descripcion, ingredientes, preparacion, imagenReceta, codigo)
-                    newList.add(modelo)
-               }
-               listaReceta.value = newList
+        db.collection("recetas")
+            .whereEqualTo("uid", userId) // Filtramos por el UID del usuario
+            .orderBy("nombre", com.google.firebase.firestore.Query.Direction.ASCENDING)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                val recetasList = ArrayList<Receta>()
+                for (document in querySnapshot) {
+                    val data = document.data
+                    val nombre = data["nombre"] as? String ?: ""
+                    val categoria = data["categoria"] as? String ?: ""
+                    val descripcion = data["descripcion"] as? String ?: ""
+                    val ingredientes = data["ingredientes"] as? String ?: ""
+                    val preparacion = data["preparacion"] as? String ?: ""
+                    val imagenReceta = data["imagenReceta"] as? String ?: ""
+                    val fecha = document.getTimestamp("fecha")
+                    val codigo = document.id
+
+                    val receta = Receta(nombre, categoria, descripcion, ingredientes, preparacion, imagenReceta, fecha, codigo)
+                    recetasList.add(receta)
+                }
+
+                listaReceta.value = recetasList
+                Log.d(TAG, "Se han encontrado ${recetasList.size} recetas para el UID: $userId")
             }
-           .addOnFailureListener { exception ->
-                errorMessage.value = "Error al cargar la lista de recetas: ${exception.message}"
+            .addOnFailureListener { exception ->
+                errorMessage.value = "Error al cargar las recetas: ${exception.message}"
+                Log.e(TAG, "Error al cargar las recetas: ${exception.message}")
             }
     }
 
@@ -129,9 +152,10 @@ class RecetaViewModel : ViewModel() {
                 val ingredientes = data["ingredientes"] as? String?: ""
                 val preparacion = data["preparacion"] as? String?: ""
                 val imagenReceta = data["imagenReceta"] as? String?: ""
+                val fecha = document.getTimestamp("fecha")
                 val codigo = document.id
 
-                val modelo = Receta(nombre, categoria, descripcion, ingredientes, preparacion, imagenReceta, codigo)
+                val modelo = Receta(nombre, categoria, descripcion, ingredientes, preparacion, imagenReceta,fecha, codigo)
                 newList.add(modelo)
             }
             listaReceta.value = newList

@@ -9,11 +9,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.recetas.recetasapp.R
 import com.recetas.recetasapp.model.Receta
+import com.recetas.recetasapp.model.RecetaList
 import com.recetas.recetasapp.view.activity.DetalleMisRecetasActivity
 import com.squareup.picasso.Picasso
 
 class MisRecetasViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup) :
-RecyclerView.ViewHolder(inflater.inflate(R.layout.item_mis_recetas, viewGroup)){
+RecyclerView.ViewHolder(inflater.inflate(R.layout.item_mis_recetas, viewGroup, false)){
 
     private var imgReceta : ImageView?= null
     private var txtTitulo : TextView?= null
