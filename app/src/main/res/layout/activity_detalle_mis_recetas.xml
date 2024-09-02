@@ -50,8 +50,9 @@
             android:gravity="center">
         </TextView>
         <ImageView
+            android:id="@+id/btnImagenReceta"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="300dp"
             android:src="@drawable/placeholder_comida"
             android:layout_marginTop="10dp"/>
 
@@ -71,7 +72,8 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:textStyle="bold"
-            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             />
         <TextView
             android:id="@+id/textCategoria"
@@ -101,73 +103,54 @@
                 android:layout_height="wrap_content"
                 android:text="Descripcion:"
                 android:textStyle="bold"
-                android:textSize="16sp"
+                android:textSize="18sp"
+                android:textColor="@color/black"
                 android:layout_marginStart="10dp"/>
-            <com.google.android.material.textfield.TextInputLayout
+
+            <TextView
+                android:id="@+id/textDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:padding="10dp"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtDescripcion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Descripción"
-                    android:inputType="textMultiLine"
-                    android:gravity="top|start"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
+                android:hint="La descripcion de la receta"
+                android:textSize="16sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ingredientes :"
                 android:layout_marginStart="10dp"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
-            <com.google.android.material.textfield.TextInputLayout
+            <TextView
+                android:id="@+id/textIngredientes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:hint="Ingredientes">
-
-                <EditText
-                    android:id="@+id/TextIngredientes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:scrollbars="vertical"
-                    android:gravity="top|start"
-                    android:background="@drawable/ingredientes" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:hint="Los Ingredientes de la receta"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textSize="16sp"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Preparacion :"
                 android:layout_marginStart="10dp"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
-            <com.google.android.material.textfield.TextInputLayout
+            <TextView
+                android:id="@+id/textPreparacion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:hint="Preparacion">
-
-                <EditText
-                    android:id="@+id/TextPreparacion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:scrollbars="vertical"
-                    android:gravity="top|start"
-                    android:background="@drawable/ingredientes" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:hint="La Preparacion de la receta"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textSize="16sp"
+                />
             <Button
-                android:id="@+id/btnBotonPreparar"
+                android:id="@+id/btnBotonEditar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Editar"

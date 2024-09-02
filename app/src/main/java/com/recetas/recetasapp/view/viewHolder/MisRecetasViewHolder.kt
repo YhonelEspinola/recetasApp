@@ -21,6 +21,7 @@ RecyclerView.ViewHolder(inflater.inflate(R.layout.item_mis_recetas, viewGroup, f
     private var textCategoria : TextView?= null
     private var txtDescripcion : TextView?= null
     private var btnVerMas : Button?= null
+    private var textCodigo : TextView?= null
 
     init {
         imgReceta = itemView.findViewById(R.id.imgReceta)
@@ -28,6 +29,7 @@ RecyclerView.ViewHolder(inflater.inflate(R.layout.item_mis_recetas, viewGroup, f
         textCategoria = itemView.findViewById(R.id.textCategoria)
         txtDescripcion = itemView.findViewById(R.id.textDescripcion)
         btnVerMas = itemView.findViewById(R.id.btnVerMas)
+        textCodigo = itemView.findViewById(R.id.textCodigo)
     }
 
     fun bind(receta: Receta){
@@ -40,8 +42,10 @@ RecyclerView.ViewHolder(inflater.inflate(R.layout.item_mis_recetas, viewGroup, f
         txtTitulo?.text=receta.nombre
         textCategoria?.text=receta.categoria
         txtDescripcion?.text=receta.descripcion
+        textCodigo?.text=receta.codigo
         btnVerMas?.setOnClickListener {
             val intent = Intent(itemView.context, DetalleMisRecetasActivity::class.java).apply {
+                putExtra("codigo", receta.codigo)
                 putExtra("nombre", receta.nombre)
                 putExtra("categoria", receta.categoria)
                 putExtra("descripcion", receta.descripcion)

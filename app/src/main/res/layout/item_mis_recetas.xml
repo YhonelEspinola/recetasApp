@@ -89,7 +89,15 @@
                         android:layout_marginBottom="5dp"
                         />
 
+
                 </LinearLayout>
+                <TextView
+                    android:id="@+id/textCodigo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="codigo"
+                    android:visibility="invisible"
+                    />
                 <Button
                     android:id="@+id/btnVerMas"
                     android:layout_width="wrap_content"

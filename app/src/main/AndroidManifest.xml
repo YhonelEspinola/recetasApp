@@ -29,6 +29,7 @@
         <activity android:name=".view.activity.DetalleMisRecetasActivity"/>
         <activity android:name=".view.activity.ListarMisRecetaActivity"/>
         <activity android:name=".view.activity.RecuperarContraseniaActivity"/>
+        <activity android:name=".view.activity.EditarRecetaActivity"/>
     </application>
 
 </manifest>

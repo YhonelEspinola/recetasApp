@@ -105,7 +105,6 @@ class RecetaViewModel : ViewModel() {
 
         db.collection("recetas")
             .whereEqualTo("uid", userId) // Filtramos por el UID del usuario
-            .orderBy("nombre", com.google.firebase.firestore.Query.Direction.ASCENDING)
             .get()
             .addOnSuccessListener { querySnapshot ->
                 val recetasList = ArrayList<Receta>()

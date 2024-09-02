@@ -34,7 +34,7 @@ class InicioFragment : Fragment(), OnCategoriaClickListener {
         val listaCategoria = listOf<Categoria>(
             Categoria("Comida Rapida"),
             Categoria("Desayuno"),
-            Categoria("Menu"),
+            Categoria("Almuerzo"),
             Categoria("Postre"),
             Categoria("Merienda"),
             Categoria("Cena")
