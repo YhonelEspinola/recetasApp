@@ -26,7 +26,7 @@ class MenuActivity : AppCompatActivity() {
 
         val nav_view = findViewById<BottomNavigationView>(R.id.nav_view)
         nav_view.setOnItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.itemHome -> {
                     val fragment = InicioFragment.newInstance()
                     openFragment(fragment)

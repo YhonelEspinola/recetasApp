@@ -32,12 +32,13 @@ class InicioFragment : Fragment(), OnCategoriaClickListener {
         recyclerCategoria = view.findViewById(R.id.recyclerCategorias)
 
         val listaCategoria = listOf<Categoria>(
-            Categoria("Comida Rapida"),
+            Categoria("Inicio"),
             Categoria("Desayuno"),
             Categoria("Almuerzo"),
             Categoria("Postre"),
             Categoria("Merienda"),
-            Categoria("Cena")
+            Categoria("Cena"),
+            Categoria("Comida Rapida")
         )
         val adapterC = CategoriaAdapter(listaCategoria,this)
         recyclerCategoria.adapter = adapterC
@@ -52,12 +53,13 @@ class InicioFragment : Fragment(), OnCategoriaClickListener {
 
     override fun onCategoriaClick(categoria: Categoria) {
         val fragment = when (categoria.categoria){
-            "Comida Rapida" -> InicioSubFragment()
+                "Inicio" -> InicioSubFragment()
                 "Desayuno",
                 "Menu",
                 "Postre",
                 "Merienda",
-                "Cena" -> ListCategoriaSubFragment()
+                "Cena",
+                "Comida Rapida"-> ListCategoriaSubFragment()
             else -> InicioSubFragment()
         }
         val bundle = Bundle()

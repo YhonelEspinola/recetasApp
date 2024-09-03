@@ -17,4 +17,9 @@
     <style name="CustomActiveIndicatorStyle">
         <item name="android:color">@android:color/transparent</item>
     </style>
+
+    <style name="SplashTheme" parent="Base.Theme.Recetasapp">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+
 </resources>

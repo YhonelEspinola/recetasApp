@@ -57,4 +57,6 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation ("com.squareup.picasso:picasso:2.8")
     implementation("com.google.firebase:firebase-auth-ktx")
+    implementation ("androidx.core:core-splashscreen:1.0.0")
+    implementation("com.airbnb.android:lottie:6.0.0")
 }
