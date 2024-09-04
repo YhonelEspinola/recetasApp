@@ -34,11 +34,11 @@ class InicioFragment : Fragment(), OnCategoriaClickListener {
         val listaCategoria = listOf<Categoria>(
             Categoria("Inicio"),
             Categoria("Desayuno"),
-            Categoria("Almuerzo"),
-            Categoria("Postre"),
+            Categoria("Almuerzos"),
+            Categoria("Postres"),
             Categoria("Merienda"),
             Categoria("Cena"),
-            Categoria("Comida Rapida")
+            Categoria("Comida rapida")
         )
         val adapterC = CategoriaAdapter(listaCategoria,this)
         recyclerCategoria.adapter = adapterC
@@ -55,11 +55,11 @@ class InicioFragment : Fragment(), OnCategoriaClickListener {
         val fragment = when (categoria.categoria){
                 "Inicio" -> InicioSubFragment()
                 "Desayuno",
-                "Menu",
-                "Postre",
+                "Almuerzos",
+                "Postres",
                 "Merienda",
                 "Cena",
-                "Comida Rapida"-> ListCategoriaSubFragment()
+                "Comida rapida"-> ListCategoriaSubFragment()
             else -> InicioSubFragment()
         }
         val bundle = Bundle()

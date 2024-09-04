@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="15dp"
-    android:id="@+id/itemProducto"
+    android:id="@+id/itemReceta"
 
     android:padding="15dp"
     android:background="@drawable/design_item_popular">
@@ -84,7 +84,7 @@
         app:cardCornerRadius="25dp"
         >
         <ImageView
-            android:id="@+id/imgProducto"
+            android:id="@+id/imgReceta"
             android:layout_width="match_parent"
             android:layout_height="130dp"
             android:src="@mipmap/ic_launcher"

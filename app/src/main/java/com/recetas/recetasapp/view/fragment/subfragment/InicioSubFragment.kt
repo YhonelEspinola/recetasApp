@@ -12,11 +12,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.recetas.recetasapp.R
+import com.recetas.recetasapp.view.adapter.PopularAdapter
 import com.recetas.recetasapp.view.adapter.RecetasInicioAdapter
 import com.recetas.recetasapp.viewModel.ListCategoriaViewModel
 
 class InicioSubFragment : Fragment() {
-
+    private lateinit var adapterP: PopularAdapter
     private lateinit var adapterN: RecetasInicioAdapter
     private lateinit var viewModel: ListCategoriaViewModel
 
@@ -34,6 +35,11 @@ class InicioSubFragment : Fragment() {
         val recyclerMasVistos = view.findViewById<RecyclerView>(R.id.recyclerMasVendidos)
         val recyclerRecomendado = view.findViewById<RecyclerView>(R.id.recyclerRecomendado)
         val verTodo = view.findViewById<TextView>(R.id.verTodo)
+
+        adapterP = PopularAdapter()
+        recyclerMasVistos.adapter=adapterP
+        recyclerMasVistos.layoutManager=
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
 
         adapterN = RecetasInicioAdapter()
         recyclerRecomendado.adapter=adapterN

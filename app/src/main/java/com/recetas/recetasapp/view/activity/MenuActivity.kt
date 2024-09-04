@@ -25,6 +25,13 @@ class MenuActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         val nav_view = findViewById<BottomNavigationView>(R.id.nav_view)
+
+        if (savedInstanceState == null) {
+            val fragment = InicioFragment.newInstance()
+            openFragment(fragment)
+            nav_view.selectedItemId = R.id.itemHome
+        }
+
         nav_view.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.itemHome -> {
