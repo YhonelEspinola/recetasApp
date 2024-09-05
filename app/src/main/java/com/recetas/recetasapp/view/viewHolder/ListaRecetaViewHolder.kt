@@ -41,6 +41,7 @@ RecyclerView.ViewHolder(inflater.inflate(R.layout.item_receta, viewGroup, false)
 
         item_receta?.setOnClickListener {
           val intent = Intent(itemView.context, DetalleRecetaActivity::class.java).apply {
+              putExtra("codigo", receta.codigo)
               putExtra("nombre", receta.nombre)
               putExtra("categoria", receta.categoria)
               putExtra("descripcion", receta.descripcion)

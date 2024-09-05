@@ -31,8 +31,9 @@ class ListCategoriaViewModel : ViewModel(){
                 val preparacion = data["preparacion"] as? String ?: ""
                 val imagenReceta = data["imagenReceta"] as? String?: ""
                 val fecha = data["fecha"] as? Timestamp
+                val codigo = document.id
 
-                val modelo = RecetaList(nombre, categoria, descripcion,ingredientes,preparacion,imagenReceta,fecha)
+                val modelo = RecetaList(nombre, categoria, descripcion,ingredientes,preparacion,imagenReceta,fecha,codigo)
                 newList.add(modelo)
             }
             listRecetasLCat.value = newList
@@ -54,8 +55,8 @@ class ListCategoriaViewModel : ViewModel(){
                     val preparacion = data["preparacion"] as? String ?: ""
                     val imagenReceta = data["imagenReceta"] as? String?: ""
                     val fecha = data["fecha"] as? Timestamp
-
-                    val modelo = RecetaList(nombre, categoria, descripcion, ingredientes, preparacion, imagenReceta,fecha)
+                    val codigo = document.id
+                    val modelo = RecetaList(nombre, categoria, descripcion, ingredientes, preparacion, imagenReceta,fecha,codigo)
                     newList.add(modelo)
                 }
                 listRecetasN.value = newList
@@ -77,8 +78,9 @@ class ListCategoriaViewModel : ViewModel(){
                     val preparacion = data["preparacion"] as? String ?: ""
                     val imagenReceta = data["imagenReceta"] as? String?: ""
                     val fecha = data["fecha"] as? Timestamp
+                    val codigo = document.id
 
-                    val modelo = RecetaList(nombre, categoria, descripcion, ingredientes, preparacion, imagenReceta,fecha)
+                    val modelo = RecetaList(nombre, categoria, descripcion, ingredientes, preparacion, imagenReceta,fecha,codigo)
                     newList.add(modelo)
                 }
                 listRecetasN.value = newList

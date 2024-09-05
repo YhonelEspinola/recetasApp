@@ -32,7 +32,7 @@
         <activity android:name=".view.activity.RegistrarUsuarioActivity"/>
         <activity android:name=".view.activity.LoginActivity"/>
         <activity android:name=".view.activity.CrearRecetasActivity"/>
-        <activity android:name=".view.activity.DetalleRecetasActivity"/>
+        <activity android:name=".view.activity.DetalleRecetaActivity"/>
         <activity android:name=".view.activity.DetalleMisRecetasActivity"/>
         <activity android:name=".view.activity.ListarMisRecetaActivity"/>
         <activity android:name=".view.activity.RecuperarContraseniaActivity"/>
