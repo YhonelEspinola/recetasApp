@@ -17,6 +17,11 @@
     <color name="color_boton_categ">#8E8E8E</color>
     <color name="fondo_popular">#009688</color>
     <color name="color_splashScreen">#78ABA8</color>
+    <color name="fa">#78ABA8</color>
+    <color name="backgroundGuardar">#009688</color>
+    <color name="tra">#33FFFFFF</color>
+    <color name="trans">#22000000</color>
+
 
     <dimen name="categoria_select">45dp</dimen>
     <dimen name="categoria_normal">40dp</dimen>

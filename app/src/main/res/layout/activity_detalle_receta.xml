@@ -53,10 +53,35 @@
             android:id="@+id/btnImagenReceta"
             android:layout_width="match_parent"
             android:layout_height="300dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/placeholder_comida"
             android:layout_marginTop="10dp"/>
 
     </LinearLayout>
+    <ImageView
+        android:id="@+id/favoritos"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/icon_guardar"
+        android:background="@drawable/btn_guardar"
+        app:tint="@color/fa"
+        app:layout_constraintEnd_toEndOf="@+id/textCat"
+        app:layout_constraintTop_toBottomOf="@+id/textCat"/>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:padding="7dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/btn_guardar"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
+
     <LinearLayout
         android:id="@+id/text_marcador"
         android:layout_width="match_parent"
