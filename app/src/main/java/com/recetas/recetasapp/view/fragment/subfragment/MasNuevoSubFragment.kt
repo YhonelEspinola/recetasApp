@@ -33,7 +33,7 @@ class MasNuevoSubFragment : Fragment() {
         val recyclerPC = view.findViewById<RecyclerView>(R.id.recyclerPC)
         val adapterPLA = ListCategoriaAdapter()
         recyclerPC.adapter=adapterPLA
-        recyclerPC.layoutManager= GridLayoutManager(context,2)
+        recyclerPC.layoutManager= LinearLayoutManager(context)
 
 
         viewModel.listProductosNuevos()

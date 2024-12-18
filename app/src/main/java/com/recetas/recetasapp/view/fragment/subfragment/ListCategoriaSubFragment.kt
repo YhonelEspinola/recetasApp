@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.recetas.recetasapp.R
 import com.recetas.recetasapp.view.adapter.ListCategoriaAdapter
@@ -32,7 +33,7 @@ class ListCategoriaSubFragment : Fragment() {
         val recyclerPC = view.findViewById<RecyclerView>(R.id.recyclerPC)
         val adapterPLA = ListCategoriaAdapter()
         recyclerPC.adapter=adapterPLA
-        recyclerPC.layoutManager = GridLayoutManager(context, 2)
+        recyclerPC.layoutManager = LinearLayoutManager(context)
 
         val catego = arguments?.getString("catselect").toString()
         viewModel.listRecetas(catego)

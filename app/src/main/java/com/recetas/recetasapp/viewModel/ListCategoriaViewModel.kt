@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.recetas.recetasapp.model.Receta
 import com.recetas.recetasapp.model.RecetaList
 
 
@@ -13,7 +14,7 @@ class ListCategoriaViewModel : ViewModel(){
     private val db = FirebaseFirestore.getInstance()
     private val collection = db.collection("recetas")
     val listRecetasLCat = MutableLiveData<List<RecetaList>>()
-    val listRecetasMV = MutableLiveData<List<RecetaList>>()
+    val listRecetasMV = MutableLiveData<List<Receta>>()
     val listRecetasN = MutableLiveData<List<RecetaList>>()
 
     fun listRecetas(catego: String){
@@ -41,7 +42,7 @@ class ListCategoriaViewModel : ViewModel(){
     }
 
     fun listRecetasNuevas(){
-        collection.orderBy("fecha", Query.Direction.DESCENDING)
+        collection.orderBy("nombre", Query.Direction.DESCENDING)
             .limit(4)
             .get()
             .addOnSuccessListener { querySnapshot ->
@@ -64,7 +65,7 @@ class ListCategoriaViewModel : ViewModel(){
     }
 
     fun listProductosNuevos(){
-        collection.orderBy("fecha", Query.Direction.DESCENDING)
+        collection.orderBy("nombre", Query.Direction.DESCENDING)
             .limit(10)
             .get()
             .addOnSuccessListener { querySnapshot ->
@@ -87,4 +88,60 @@ class ListCategoriaViewModel : ViewModel(){
             }
     }
 
+    fun listRecetasHomeI() {
+        val sortedRecetas = mutableMapOf<String, Int>()
+
+        // Obtener todos los documentos de la colección "favoritos"
+        db.collection("favoritos")
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                for (document in querySnapshot) {
+                    val rid = document.getString("rid") ?: continue
+                    sortedRecetas[rid] = 1  // Agregamos el código de la receta al mapa
+                }
+
+                // Llamamos a getProductos para obtener las recetas basadas en los códigos de favoritos
+                if (sortedRecetas.isNotEmpty()) {
+                    getProductos(sortedRecetas)
+                }
+            }
+    }
+
+    fun getProductos(sortedRecetas: Map<String, Int>) {
+        val recetaList = mutableListOf<Receta>()
+
+        sortedRecetas.forEach { (codigo) ->
+            db.collection("recetas").document(codigo)
+                .get()
+                .addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        val data = documentSnapshot.data ?: return@addOnSuccessListener
+                        val nombre = data["nombre"] as? String ?: ""
+                        val categoria = data["categoria"] as? String ?: ""
+                        val descripcion = data["descripcion"] as? String ?: ""
+                        val ingredientes = data["ingredientes"] as? String ?: ""
+                        val preparacion = data["preparacion"] as? String ?: ""
+                        val imagenReceta = data["imagenReceta"] as? String ?: ""
+                        val fecha = data["fecha"] as? Timestamp
+
+
+                        val modelo = Receta(
+                            nombre,
+                            categoria,
+                            descripcion,
+                            ingredientes,
+                            preparacion,
+                            imagenReceta,
+                            fecha,
+                            codigo
+                        )
+                        recetaList.add(modelo)
+
+                        if (recetaList.size == sortedRecetas.size){
+                            listRecetasMV.value = recetaList
+                        }
+                    }
+                }
+        }
+    }
 }

@@ -43,7 +43,7 @@ class InicioSubFragment : Fragment() {
 
         adapterN = RecetasInicioAdapter()
         recyclerRecomendado.adapter=adapterN
-        recyclerRecomendado.layoutManager= GridLayoutManager(context,2)
+        recyclerRecomendado.layoutManager= LinearLayoutManager(context)
 
         viewModel.listRecetasNuevas()
         viewModel.listRecetasN.observe(viewLifecycleOwner) {
@@ -53,6 +53,14 @@ class InicioSubFragment : Fragment() {
             }
 
         }
+
+        viewModel.listRecetasHomeI()
+        viewModel.listRecetasMV.observe(viewLifecycleOwner){
+            if (it.isNotEmpty()) {
+                adapterP.setDatos(it)
+            }
+        }
+
         verTodo.setOnClickListener(){
 
             val transaction = parentFragmentManager.beginTransaction()

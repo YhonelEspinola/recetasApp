@@ -3,6 +3,7 @@ package com.recetas.recetasapp.view.viewHolder
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -15,7 +16,7 @@ import com.squareup.picasso.Picasso
 class FavoritosViewHolder (inflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerView.ViewHolder(inflater.inflate(R.layout.item_favoritos, viewGroup, false)) {
 
     private var imagen: ImageView? = null
-    private var titulo: TextView? = null
+    private var titulo: Button? = null
     private var carView: CardView? = null
 
     init {
